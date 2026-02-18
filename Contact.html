@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Project Lock</title>
+    <link rel="icon" type="image/x-icon" href="Style_and_content/Content/projectlock_lock_logo_01.png">
+    <link rel="stylesheet" href="Style_and_content/style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="Style_and_content/Content/projectlock_lock_logo_01.png" alt="Project Lock Logo">
+        </div>
+        <nav aria-label="Main Navigation">
+            <ul class="nav-links">
+                <li><a href="Index.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Teachers.html">Teachers</a></li>
+                <li><a href="Students.html">Students</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contact Section -->
+    <section>
+        <h1>Contact Us</h1>
+
+        <form action="https://formspree.io/f/mzdavrjp" method="POST" id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="tel" name="phone" placeholder="Phone Number">
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+
+        <p id="form-response" style="display:none; color:green;">Thanks for your message! We'll get back to you soon.</p>
+
+        <script>
+            const form = document.getElementById('contact-form');
+            const response = document.getElementById('form-response');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const data = new FormData(form);
+                const responseFetch = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (responseFetch.ok) {
+                    response.style.display = 'block';
+                    form.reset();
+                } else {
+                    alert('Oops! There was a problem submitting your form');
+                }
+            });
+        </script>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Project Lock. All rights reserved.</p>
+    </footer>
+</body>
+</html>
